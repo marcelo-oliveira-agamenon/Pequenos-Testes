@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calcular Gorjeta</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<h1>Calcular Gorjeta</h1>
+		<div id="calculadora">
+			<form>
+				<p>Quanto foi sua conta?</p>
+				<p> $ <input id="valorConta" type="text" placeholder="Valor da Conta"></p>
+				<select id="qualiServico">
+					<option disabled selected value="0">  -->Escolha uma opção<--  </option>
+					<option value="0.3">30&#37; &#45; Ótimo Serviço</option>
+					<option value="0.2">20&#37; &#45; Bom Serviço</option>
+					<option value="0.15">15&#37; &#45; Serviço OK</option>
+					<option value="0.1">10&#37; &#45; Serviço Ruim</option>
+					<option value="0.05">5&#37; &#45; Serviço Horrível</option>
+				</select>		
+			</form>
+
+			<p>Quantas Pessoas estão compartilhando a conta?</p>
+			<input type="text" id="qtdPessoas" placeholder="Quantidade de Pessoas"> Pessoas
+			<button type="button" id="calcular">Calcular</button>
+		</div>
+
+		<div id="totalGorjeta">
+			<sup>$</sup><span id="gorjeta">0.00</span>
+			<small id="cada">Cada</small>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
