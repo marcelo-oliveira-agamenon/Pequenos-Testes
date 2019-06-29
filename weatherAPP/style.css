@@ -32,13 +32,19 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .degree-section span {
     margin: 10px;
     font-size: 30px;
+    display: none;
 }
 
 .degree-section h2 {
     font-size: 40px;
+}
+
+.icon {
+    margin-left: 50px;
 }
