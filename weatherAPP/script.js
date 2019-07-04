@@ -4,7 +4,8 @@ window.addEventListener('load', ()=> {
     let temperatureDescription =  document.querySelector('.temperature-description');
     let temperatureDegree = document.querySelector('.temperature-degree');
     let locationTimezone = document.querySelector('.location-timezone');
-    let temperatureSection = document.querySelector('.temperature');
+    const temperatureSection = document.querySelector('.degree-section');
+    var count = 1;
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position =>{
@@ -18,20 +19,20 @@ window.addEventListener('load', ()=> {
                     return data.json();
                 })
                 .then(data => {
-                    console.log(data);
                     const { temperature, summary, icon } = data.currently;
-                    temperatureDegree.textContent = temperature;
+                    temperatureDegree.textContent = temperature.toFixed(1);
                     temperatureDescription.textContent = summary;
                     locationTimezone.textContent = data.timezone;               
                     setIcons(icon, document.querySelector('.icon'));
-                
-                    temperatureSection.addEventListener('click', transformToCelsius(temperature));
+                    
                     document.querySelector('span').style.display = "flex";
+                    temperatureSection.addEventListener('click', function() {transformTemperature(temperature, count)});
+                    return count;
                 });
         });
     } else if(navigator.geolocation == null) {
         var text = document.querySelector('.location-timezone');
-        text.textContent = "Please enable Geolocation";
+        text.textContent = 'Please enable Geolocation';
     }
 
    function setIcons(icon, iconId) {
@@ -41,9 +42,19 @@ window.addEventListener('load', ()=> {
        return skyicons.set(iconId, Skycons[currentIcon]);
    }
 
-   function transformToCelsius(temperature) {
-    var total = (parseFloat(temperature)-32) * 5/9;
-    document.querySelector('span').textContent = '°C';
-    return total = total.toFixed(1);
+   function transformTemperature(temperature, count) {
+    if (count === 1) {
+        var celsius = (parseFloat(temperature)-32) * 5/9;
+        document.querySelector('span').textContent = '°C';
+        celsius = celsius.toFixed(1);
+        temperatureDegree.textContent = celsius
+        return count = 2;
+    } else if (count === 2){
+        var fahrenheit = temperature;
+        fahrenheit = fahrenheit.toFixed(1);
+        document.querySelector('span').textContent = '°F';
+        temperatureDegree.textContent = fahrenheit;
+        return count = 1;
+    }
    }
 });
